@@ -20,8 +20,8 @@ Tên chức danh năm 1976 được giữ theo nguồn: Trường Chinh là Ch�
 
 ## Thiết kế & khả năng tiếp cận
 
-Thiết kế triển lãm tương tác: nền than đen, điểm sáng xanh và tím, tiêu đề Barlow Condensed. `cinema.css` và `cinema.js` tạo ba cảnh có chiều sâu: poster mở đầu với hình hạt 3D biến đổi, các lớp hình của hành trình xoay qua bốn mốc, và khung nghị trường thay đổi theo bốn ngày. Hình học trang trí được vẽ bằng WebGL, ảnh tư liệu hiển thị bằng phối cảnh CSS 3D. Tiến độ được nội suy theo thời gian; không ép cuộn hoặc thay đổi tỷ lệ dữ liệu.
+Thiết kế triển lãm tương tác: nền đỏ trầm, ngôi sao vàng năm cánh và điểm sáng vàng, tiêu đề Barlow Condensed. `cinema.css` và `cinema.js` tạo ba cảnh có chiều sâu: poster mở đầu với sao vàng chuyển động nhẹ trên nền đỏ, các lớp hình của hành trình xoay qua bốn mốc, và khung nghị trường thay đổi theo bốn ngày. Nền sao vàng được vẽ bằng Canvas 2D, ảnh tư liệu hiển thị bằng phối cảnh CSS 3D. Tiến độ được nội suy theo thời gian; không ép cuộn hoặc thay đổi tỷ lệ dữ liệu.
 
-Biểu đồ 492 chấm có bộ lọc, sáu hồ sơ nghị quyết dùng tab bàn phím, ảnh mở lớn và câu hỏi cuối bài. Có nút bật/tắt chuyển động trong mục lục và tôn trọng `prefers-reduced-motion`. Khi tắt chuyển động, toàn bộ bài chuyển về thứ tự đọc thông thường. Hỗ trợ điện thoại, không thu thập dữ liệu người đọc. Các hạt và vòng sáng là trang trí; chúng tách biệt với biểu đồ dữ liệu 492 đại biểu.
+Biểu đồ 492 chấm có bộ lọc, sáu hồ sơ nghị quyết dùng tab bàn phím, ảnh mở lớn và câu hỏi cuối bài. Có nút bật/tắt chuyển động trong mục lục và tôn trọng `prefers-reduced-motion`. Khi tắt chuyển động, toàn bộ bài chuyển về thứ tự đọc thông thường. Hỗ trợ điện thoại, không thu thập dữ liệu người đọc. Ngôi sao, ánh sáng và các hạt nền là trang trí; chúng tách biệt với biểu đồ dữ liệu 492 đại biểu.
 
 Fonts được tải từ Google Fonts; trình duyệt có font dự phòng nếu offline. Nội dung chính vẫn đọc được khi JavaScript bị tắt; các tương tác cần JavaScript.

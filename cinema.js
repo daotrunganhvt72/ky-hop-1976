@@ -253,94 +253,88 @@
     else requestFrame();
   });
 
-  // Real 3D geometry, rendered by the GPU. These particles are decorative;
-  // the data chart below is a separate, exact set of 492 SVG dots.
+  // A decorative five-point yellow star on a red field.
+  // It is separate from the exact 492-delegate data chart.
   function createWorld() {
-    const gl = canvas.getContext('webgl', {alpha: false, antialias: false, powerPreference: 'low-power'});
-    if (!gl) return null;
-    const vertex = `
-      attribute vec3 aSphere; attribute vec3 aHelix; attribute vec3 aLetter; attribute float aSeed;
-      uniform float uTime,uShape,uLetter,uSpread,uRot,uScale,uAspect,uPixel,uOpacity;
-      uniform vec2 uCenter;
-      varying vec3 vColor; varying float vAlpha;
-      void main(){
-        vec3 p=mix(aSphere,aHelix,uShape); p=mix(p,aLetter,uLetter);
-        p+=normalize(p+vec3(.01))*(uSpread*aSeed*2.8);
-        p.y+=sin(uTime*.4+aSeed*10.)*.09*(1.-uLetter);
-        float c=cos(uRot),s=sin(uRot); p.xz=mat2(c,-s,s,c)*p.xz;
-        float rx=.2+sin(uTime*.12)*.06; p.yz=mat2(cos(rx),-sin(rx),sin(rx),cos(rx))*p.yz;
-        p*=uScale; float depth=max(2.,p.z+8.);
-        vec2 screen=p.xy*2.1/vec2(uAspect,1.)+uCenter*depth;
-        gl_Position=vec4(screen,0.,depth);
-        gl_PointSize=clamp((2.8+aSeed*4.2)*uPixel*8./depth,1.5,12.);
-        vColor=mix(vec3(.72,.38,1.),vec3(.71,1.,.38),smoothstep(-2.,2.,aSphere.y));
-        vColor=mix(vColor,vec3(1.,.7,.42),smoothstep(.85,1.,aSeed)*.25);
-        vAlpha=uOpacity*(.38+pow(1.-aSeed,.5)*.8)*clamp((13.-depth)/6.,.2,1.);
-      }`;
-    const fragment = `precision mediump float; varying vec3 vColor; varying float vAlpha;
-      void main(){float d=length(gl_PointCoord-.5); if(d>.5)discard;
-        float a=(1.-smoothstep(.08,.5,d))*vAlpha;gl_FragColor=vec4(vColor,a);}`;
-    function shader(type, source) {
-      const value = gl.createShader(type); gl.shaderSource(value, source); gl.compileShader(value);
-      if (!gl.getShaderParameter(value, gl.COMPILE_STATUS)) {gl.deleteShader(value); return null;}
-      return value;
-    }
-    const vs = shader(gl.VERTEX_SHADER, vertex), fs = shader(gl.FRAGMENT_SHADER, fragment);
-    if (!vs || !fs) return null;
-    const program = gl.createProgram();gl.attachShader(program, vs);gl.attachShader(program, fs);gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return null;
-    gl.useProgram(program);
-    const count = innerWidth < 760 ? 4300 : 7600;
-    const sphere = [], helix = [], seeds = [], letters = [];
-    const textCanvas = document.createElement('canvas'); textCanvas.width = 1000; textCanvas.height = 360;
-    const ctx = textCanvas.getContext('2d', {willReadFrequently: true});
-    ctx.font = '600 340px "Barlow Condensed", sans-serif'; ctx.textAlign = 'center';ctx.textBaseline = 'middle';ctx.fillText('1976', 500, 190);
-    const pixels = ctx.getImageData(0, 0, 1000, 360).data;
-    const candidates = [];
-    for(let y=0;y<360;y+=4)for(let x=0;x<1000;x+=4)if(pixels[(y*1000+x)*4+3]>160)candidates.push([x,y]);
-    for(let i=0;i<count;i++) {
-      const seed = ((i * 16807 + 13) % 65521) / 65521;
-      const y=1-2*(i+.5)/count,r=Math.sqrt(1-y*y),angle=i*2.39996323;
-      sphere.push(Math.cos(angle)*r*2.65,y*2.65,Math.sin(angle)*r*2.65);
-      const a=i/count*Math.PI*22,ribbon=1.2+Math.sin(a*.17)*.45;
-      helix.push(Math.cos(a)*ribbon,(i/count-.5)*7,Math.sin(a)*ribbon);
-      const point=candidates[(i*97)%candidates.length]||[500,180];
-      letters.push((point[0]-500)/125,(180-point[1])/125,(seed-.5)*.15);
-      seeds.push(seed);
-    }
-    function attribute(name, values, size) {
-      const buffer = gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(values),gl.STATIC_DRAW);
-      const location=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,size,gl.FLOAT,false,0,0);
-    }
-    attribute('aSphere',sphere,3);attribute('aHelix',helix,3);attribute('aLetter',letters,3);attribute('aSeed',seeds,1);
-    const uniforms = {};
-    ['Time','Shape','Letter','Spread','Rot','Scale','Aspect','Pixel','Opacity','Center'].forEach(key=>uniforms[key]=gl.getUniformLocation(program,'u'+key));
-    gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);gl.disable(gl.DEPTH_TEST);
-    let pixel = 1;
+    const ctx = canvas.getContext('2d', {alpha: false});
+    if (!ctx) return null;
+    let width = innerWidth, height = innerHeight;
+    const points = Array.from({length: 10}, (_, i) => {
+      const angle = -Math.PI / 2 + i * Math.PI / 5;
+      const radius = i % 2 ? .381966 : 1;
+      return [Math.cos(angle) * radius, Math.sin(angle) * radius];
+    });
+    const dust = Array.from({length: 65}, (_, i) => ({
+      x: ((i * 7919 + 17) % 997) / 997,
+      y: ((i * 3571 + 23) % 991) / 991,
+      phase: i * 1.618, size: .6 + (i % 4) * .3
+    }));
     function resize() {
-      pixel=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(innerWidth*pixel);canvas.height=Math.round(innerHeight*pixel);gl.viewport(0,0,canvas.width,canvas.height);
+      width = innerWidth; height = innerHeight;
+      const pixel = Math.min(devicePixelRatio || 1, 1.5);
+      canvas.width = Math.round(width * pixel); canvas.height = Math.round(height * pixel);
+      ctx.setTransform(pixel, 0, 0, pixel, 0, 0);
     }
     function draw(time, hero, gallery, scene, mouse) {
-      gl.clearColor(.025,.028,.037,1);gl.clear(gl.COLOR_BUFFER_BIT);
-      let shape=0,letter=0,spread=.08,rot=time*.075,scale=1,opacity=.2,center=[0,0];
-      if(scene==='hero'){
-        letter=ramp(hero,.04,.15)*(1-ramp(hero,.25,.43));
-        shape=ramp(hero,.28,.5);spread=ramp(hero,.18,.4)*.3;
-        rot=time*.06+hero*6.4*(1-letter);scale=1.05+ramp(hero,.05,.3)*1.2-ramp(hero,.4,.7)*.9;
-        opacity=1.05-ramp(hero,.62,1)*.8;center=[lerp(0,.32,ramp(hero,.4,.7)),0];
-      }else if(scene==='gallery'){
-        shape=1;rot=time*.08+gallery*.65;spread=.3;scale=1.4;opacity=.75;center=[innerWidth<760?0:.3,0];
-      }else if(scene==='session'){
-        rot=time*.06+hero*.3;scale=1.5;opacity=.25;center=[.25,0];
-      }else if(scene==='still') {opacity=.12;scale=1;}
-      gl.uniform1f(uniforms.Time,time);gl.uniform1f(uniforms.Shape,shape);gl.uniform1f(uniforms.Letter,letter);
-      gl.uniform1f(uniforms.Spread,spread);gl.uniform1f(uniforms.Rot,rot+mouse[0]*.12);gl.uniform1f(uniforms.Scale,scale);
-      gl.uniform1f(uniforms.Aspect,innerWidth/innerHeight);gl.uniform1f(uniforms.Pixel,pixel);gl.uniform1f(uniforms.Opacity,opacity);
-      gl.uniform2f(uniforms.Center,center[0]+mouse[0]*.015,center[1]-mouse[1]*.015);gl.drawArrays(gl.POINTS,0,count);
+      const mobile = width <= 760;
+      const moving = scene !== 'still';
+      const t = moving ? time : 0;
+      const base = ctx.createLinearGradient(0, 0, width, height);
+      base.addColorStop(0, '#38030c'); base.addColorStop(.42, '#790b1b'); base.addColorStop(1, '#200308');
+      ctx.fillStyle = base; ctx.fillRect(0, 0, width, height);
+      const glow = ctx.createRadialGradient(width * .54, height * .38, 0, width * .54, height * .38, Math.max(width, height) * .75);
+      glow.addColorStop(0, '#ca183148'); glow.addColorStop(1, '#ca183100');
+      ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height);
+      // Broad, quiet folds keep the red field moving without distorting the emblem.
+      for (let i = 0; i < 5; i++) {
+        const x = width * (i / 4 - .1) + Math.sin(t * .12 + i) * width * .025;
+        const fold = ctx.createLinearGradient(x, 0, x + width * .28, height);
+        fold.addColorStop(0, '#ff364000'); fold.addColorStop(.5, '#ff36400b'); fold.addColorStop(1, '#00000015');
+        ctx.fillStyle = fold;
+        ctx.beginPath(); ctx.moveTo(x, -height * .1);
+        ctx.bezierCurveTo(x + width * .3, height * .2, x - width * .1, height * .6, x + width * .26, height * 1.1);
+        ctx.lineTo(x + width * .5, height * 1.1);
+        ctx.bezierCurveTo(x + width * .1, height * .6, x + width * .5, height * .2, x + width * .2, -height * .1);
+        ctx.closePath(); ctx.fill();
+      }
+      let centerX = width * .5, centerY = height * .48;
+      let radius = Math.min(height * .43, width * (mobile ? .49 : .32));
+      let opacity = .94, angle = Math.sin(t * .16) * .018;
+      if (scene === 'hero') {
+        const advance = ramp(hero, .15, .65);
+        centerX += width * .18 * advance;
+        radius *= 1 + advance * .2;
+        opacity *= 1 - ramp(hero, .18, .72) * .76;
+        angle += advance * .065;
+      } else if (scene === 'gallery') {
+        centerX = width * (mobile ? .5 : .7); centerY = height * .42;
+        opacity = .27; radius *= 1.25; angle += Math.sin(gallery * 1.1) * .06;
+      } else if (scene === 'session') {
+        centerX = width * .68; opacity = .18; radius *= 1.3;
+      } else {opacity = .16;}
+      ctx.save();
+      ctx.translate(centerX + mouse[0] * 9, centerY - mouse[1] * 7);
+      ctx.rotate(angle); ctx.globalAlpha = opacity;
+      const gold = ctx.createLinearGradient(0, -radius, 0, radius);
+      gold.addColorStop(0, '#fff39e'); gold.addColorStop(.4, '#ffda49'); gold.addColorStop(1, '#eab52a');
+      ctx.fillStyle = gold; ctx.shadowColor = '#ffbd2c50'; ctx.shadowBlur = 38;
+      ctx.beginPath(); points.forEach(([x,y], i) => i ? ctx.lineTo(x * radius, y * radius) : ctx.moveTo(x * radius, y * radius));
+      ctx.closePath(); ctx.fill();
+      ctx.shadowBlur = 0; ctx.strokeStyle = '#fff0a675'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.restore();
+      ctx.fillStyle = '#ffe5a1';
+      dust.forEach(dot => {
+        ctx.globalAlpha = .08 + (Math.sin(t * .4 + dot.phase) + 1) * .07;
+        ctx.beginPath(); ctx.arc(dot.x * width, dot.y * height + Math.sin(t * .18 + dot.phase) * 8, dot.size, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      const shade = ctx.createLinearGradient(0, 0, 0, height);
+      shade.addColorStop(0, '#18050948'); shade.addColorStop(.5, '#18050900'); shade.addColorStop(1, '#18050965');
+      ctx.fillStyle = shade; ctx.fillRect(0, 0, width, height);
     }
-    resize();canvas.dataset.renderer='webgl';canvas.dataset.particles=String(count);body.classList.add('webgl-ready');
-    canvas.addEventListener('webglcontextlost', event => {event.preventDefault();world=null;body.classList.remove('webgl-ready');canvas.dataset.renderer='fallback';});
-    return {resize,draw};
+    resize(); canvas.dataset.renderer = 'canvas2d'; canvas.dataset.background = 'vietnam-star';
+    body.classList.add('star-ready');
+    return {resize, draw};
   }
 
   configure();

@@ -20,6 +20,8 @@ Tên chức danh năm 1976 được giữ theo nguồn: Trường Chinh là Ch�
 
 ## Thiết kế & khả năng tiếp cận
 
-Phong cách biên tập giấy ngà, đỏ đất và xanh đậm, dùng ảnh đen trắng. Dòng thời gian bám theo cuộn, biểu đồ 492 chấm có bộ lọc, sáu hồ sơ nghị quyết dùng tab bàn phím, ảnh mở lớn và câu hỏi cuối bài. Tôn trọng `prefers-reduced-motion`, hỗ trợ điện thoại, không ép cuộn và không thu thập dữ liệu người đọc.
+Thiết kế nền xanh đêm, ánh sáng tím và vàng, tiêu đề sans-serif có bóng đổ. Cảnh mở đầu ghim ảnh tư liệu, mở rộng và đổi góc nhẹ theo vị trí cuộn; các mốc thời gian và cảnh nghị trường chuyển theo câu chuyện. `motion.css` và `motion.js` quản lý lớp thiết kế này, không làm thay đổi dữ kiện hoặc tỷ lệ biểu đồ. Chuyển động được nội suy theo thời gian và chỉ chạy khi cần, dùng cuộn tự nhiên của trình duyệt.
+
+Biểu đồ 492 chấm có bộ lọc, sáu hồ sơ nghị quyết dùng tab bàn phím, ảnh mở lớn và câu hỏi cuối bài. Tôn trọng `prefers-reduced-motion`, hỗ trợ điện thoại, không ép cuộn và không thu thập dữ liệu người đọc. Các vòng sáng và chữ năm lớn là trang trí, không phải tư liệu lịch sử.
 
 Fonts được tải từ Google Fonts; trình duyệt có font dự phòng nếu offline. Nội dung chính vẫn đọc được khi JavaScript bị tắt; các tương tác cần JavaScript.

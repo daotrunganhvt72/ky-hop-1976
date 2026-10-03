@@ -80,18 +80,18 @@ updateReading();
 // never identified people, actual seats, or membership intersections.
 const total = 492;
 const groups = [
-  {label: 'Công nhân', count: 80, color: '#b9583c'},
-  {label: 'Nông dân', count: 100, color: '#bf9b5e'},
-  {label: 'Thợ thủ công', count: 6, color: '#daaa92'},
-  {label: 'Quân nhân', count: 54, color: '#55756b'},
-  {label: 'Cán bộ chính trị', count: 141, color: '#314e52'},
-  {label: 'Trí thức và nhân sĩ', count: 98, color: '#829295'},
-  {label: 'Đại biểu tôn giáo', count: 13, color: '#8d7082'}
+  {label: 'Công nhân', count: 80, color: '#edac8c'},
+  {label: 'Nông dân', count: 100, color: '#edc786'},
+  {label: 'Thợ thủ công', count: 6, color: '#e0a9ce'},
+  {label: 'Quân nhân', count: 54, color: '#74bea9'},
+  {label: 'Cán bộ chính trị', count: 141, color: '#859fed'},
+  {label: 'Trí thức và nhân sĩ', count: 98, color: '#a3c4db'},
+  {label: 'Đại biểu tôn giáo', count: 13, color: '#b5a0e2'}
 ];
 const dimensions = {
-  women: {label: 'Đại biểu nữ', count: 132, color: '#b9583c'},
-  ethnic: {label: 'Đại biểu dân tộc thiểu số', count: 67, color: '#bf9b5e'},
-  young: {label: 'Đại biểu tuổi 20–30', count: 58, color: '#55756b'}
+  women: {label: 'Đại biểu nữ', count: 132, color: '#edac8c'},
+  ethnic: {label: 'Đại biểu dân tộc thiểu số', count: 67, color: '#edc786'},
+  young: {label: 'Đại biểu tuổi 20–30', count: 58, color: '#74bea9'}
 };
 const dots = [];
 for (let row = 0; row < 12; row++) {

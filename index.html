@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080d1c">
+<meta name="theme-color" content="#08090c">
 <title>1976 — Từ hai miền đến một Nhà nước</title>
 <meta name="description" content="Một chuyên đề báo chí dữ liệu về kỳ họp thứ nhất Quốc hội khóa VI. Từ hiệp thương, lá phiếu đến những quyết định ngày 2/7/1976, qua ảnh tư liệu và biểu đồ tương tác.">
 <link rel="canonical" href="https://daotrunganhvt72.github.io/ky-hop-1976/">
@@ -15,11 +15,11 @@
 <link rel="icon" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="motion.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cinema.css">
 </head>
 <body>
+<canvas id="universe" aria-hidden="true"></canvas>
 <a class="skip" href="#cau-hoi">Đọc nội dung chính</a>
 <div class="read-progress" aria-hidden="true">
 <i id="progress">
@@ -55,6 +55,7 @@
 <span>07</span>Ý nghĩa và giới hạn</a>
 <a href="#tu-lieu">
 <span>08</span>Đọc lại tư liệu gốc</a>
+<button id="motion-toggle" type="button" aria-pressed="true">Chuyển động: <span>Bật</span></button>
 </aside>
 <main>
 <section class="cover" id="dau" data-chapter="Mở đầu">
@@ -67,13 +68,12 @@
 </div>
 <div class="cover-title">
 <div>
-<p class="cover-pre">TỪ HAI MIỀN ĐẾN</p>
-<h1>Một<br>
-<em>Nhà nước.</em>
-</h1>
+<p class="cover-pre">KỲ HỌP THỨ NHẤT · QUỐC HỘI KHÓA VI</p>
+<h1>VIỆT NAM.<br><em>1976.</em></h1>
 </div>
-<div class="cover-year" aria-hidden="true">1976</div>
+<div class="cover-year" aria-hidden="true">VI</div>
 </div>
+<div class="hero-story"><span>24.06 — 03.07.1976</span><h2>TỪ HAI MIỀN.<br>ĐẾN MỘT<br><em>NHÀ NƯỚC.</em></h2><p>Mười ngày ở Hà Nội, một bước ngoặt trong tiến trình thống nhất.</p></div>
 <div class="cover-description">
 <p>Đất nước đã liền một dải.<br>Vì sao vẫn cần một kỳ họp để hoàn thành thống nhất?</p>
 <a class="begin" href="#cau-hoi">
@@ -92,6 +92,14 @@
 </div>
 <figcaption>Quốc hội biểu quyết tại kỳ họp thứ nhất, năm 1976. Ảnh tư liệu VietnamPlus / BTLSQG. <a href="#anh">Xuất xứ ảnh</a>
 </figcaption>
+</figure>
+<figure class="hero-side hero-side-a">
+<img src="assets/campaign.jpg" alt="Cổ động bầu cử ở Hoàng Liên Sơn năm 1976">
+<figcaption>HOÀNG LIÊN SƠN · 04.1976<br>Cổ động bầu cử · media.quochoi.vn / BTLSQG [2]</figcaption>
+</figure>
+<figure class="hero-side hero-side-b">
+<img src="assets/vote.jpg" alt="Phạm Văn Đồng bỏ phiếu bầu cơ quan lãnh đạo tại kỳ họp">
+<figcaption>HÀ NỘI · 1976<br>Phạm Văn Đồng bỏ phiếu · BTLSQG [5]</figcaption>
 </figure>
 <div class="scene-cue" aria-hidden="true"><span>CUỘN ĐỂ BƯỚC VÀO LỊCH SỬ</span><i></i><span>01 / 08</span></div>
 </div>
@@ -167,7 +175,9 @@
 </h2>
 <p>Một kỳ họp không xuất hiện trong khoảng trống. Trước nghị trường là những cuộc gặp, quyết định tổ chức và lá phiếu của nhân dân.</p>
 </div>
+</div>
 <div class="journey">
+<div class="journey-stage">
 <div class="journey-sticky">
 <div class="timeline-big">
 <span id="journey-month">11</span>
@@ -193,7 +203,7 @@
 </nav>
 <span class="folio">CHƯƠNG 02 / THEO DÒNG THỜI GIAN</span>
 </div>
-<div class="journey-stories">
+<div class="journey-stories" tabindex="0" aria-label="Nội dung mốc thời gian đang đọc">
 <article class="journey-step" id="moc-1" data-month="11" data-year="1975">
 <span class="step-date">15 — 21 / 11 / 1975</span>
 <h3>Hai miền cùng bàn<br>một tương lai chung.</h3>
@@ -234,6 +244,26 @@
 <a class="text-link" href="#nghi-truong">Đi vào mười ngày của kỳ họp</a>
 </article>
 </div>
+<button class="copy-more" data-copy="journey" hidden>ĐỌC TIẾP ↓</button>
+<div class="gallery-deck">
+<figure class="gallery-card gallery-poster poster-union" data-card="0">
+<div class="poster-eyebrow">15 — 21.11.1975 / SÀI GÒN</div><div class="poster-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+<strong>HIỆP<br>THƯƠNG.</strong><figcaption>Hai miền cùng bàn việc thống nhất Nhà nước. <a href="#s10">[10]</a></figcaption>
+</figure>
+<figure class="gallery-card gallery-poster poster-council" data-card="1">
+<div class="poster-eyebrow">HỘI ĐỒNG BẦU CỬ TOÀN QUỐC</div><strong>22</strong><div class="council-dot-grid" aria-hidden="true"></div>
+<p>THÀNH VIÊN<br><span>11 người từ mỗi miền</span></p><figcaption>Số liệu về tổ chức tổng tuyển cử. <a href="#s2">[2]</a></figcaption>
+</figure>
+<figure class="gallery-card gallery-photo" data-card="2">
+<button class="zoom-photo" data-image="assets/campaign.jpg" data-caption="Cổ động bầu cử ở Hoàng Liên Sơn, tháng 4/1976. media.quochoi.vn / BTLSQG [2]." aria-label="Xem ảnh cổ động trong hành trình"><img src="assets/campaign.jpg" alt="Cổ động bầu cử ở Hoàng Liên Sơn năm 1976"><span>XEM ẢNH ＋</span></button>
+<div class="gallery-photo-title">NGÀY<br>LÁ PHIẾU.</div><figcaption>Cổ động bầu cử, Hoàng Liên Sơn, tháng 4/1976. media.quochoi.vn / BTLSQG. <a href="#s2">[2]</a></figcaption>
+</figure>
+<figure class="gallery-card gallery-photo" data-card="3">
+<button class="zoom-photo" data-image="assets/assembly.jpg" data-caption="Toàn cảnh kỳ họp thứ nhất Quốc hội khóa VI. BTLSQG [5]." aria-label="Xem ảnh nghị trường trong hành trình"><img src="assets/assembly.jpg" alt="Toàn cảnh kỳ họp thứ nhất Quốc hội khóa VI"><span>XEM ẢNH ＋</span></button>
+<div class="gallery-photo-title">CÙNG MỘT<br>NGHỊ TRƯỜNG.</div><figcaption>Toàn cảnh kỳ họp thứ nhất, năm 1976. BTLSQG. <a href="#s5">[5]</a></figcaption>
+</figure>
+</div>
+<div class="scene-signature" aria-hidden="true">02 / HÀNH TRÌNH <span class="gallery-index">01 — 04</span></div>
 </div>
 </div>
 </section>
@@ -307,6 +337,7 @@
 </div>
 <div class="parliament-content">
 <div class="seat-visual">
+<div class="chart-graphic">
 <svg id="parliament" viewBox="0 0 720 420" role="img" aria-labelledby="chart-title chart-desc">
 <title id="chart-title">Cơ cấu 492 đại biểu Quốc hội khóa VI</title>
 <desc id="chart-desc">Mỗi chấm là một đại biểu, bố trí hình cung để minh họa số lượng. Không mô phỏng chỗ ngồi thực tế.</desc>
@@ -314,6 +345,7 @@
 <div class="chart-center">
 <strong id="highlight-count">492</strong>
 <span id="highlight-label">ĐẠI BIỂU</span>
+</div>
 </div>
 <p class="chart-note">Cách xếp chấm chỉ là minh họa dữ liệu, không phải sơ đồ chỗ ngồi tại kỳ họp.</p>
 </div>
@@ -351,6 +383,7 @@
 </div>
 </div>
 <div class="session-scene">
+<div class="session-stage">
 <div class="session-photo">
 <img src="assets/assembly.jpg" alt="Toàn cảnh hội trường kỳ họp thứ nhất Quốc hội khóa VI" loading="lazy"><button class="archive-action" data-image="assets/assembly.jpg" data-alt="Toàn cảnh kỳ họp thứ nhất Quốc hội khóa VI" data-caption="Toàn cảnh kỳ họp thứ nhất Quốc hội khóa VI năm 1976. Nguồn BTLSQG [5]." aria-label="Xem lớn ảnh toàn cảnh">XEM ẢNH GỐC ＋</button>
 <div class="session-overlay">
@@ -361,7 +394,7 @@
 <p class="session-credit">Ảnh tư liệu BTLSQG. <a href="#s5">[5]</a>
 </p>
 </div>
-<div class="session-steps">
+<div class="session-steps" tabindex="0" aria-label="Nội dung ngày trong kỳ họp">
 <article class="session-step" data-day="24.06" data-event="Khai mạc kỳ họp">
 <span class="step-date">24 / 06 / 1976</span>
 <h3>Đặt ra nhiệm vụ<br>của Quốc hội thống nhất.</h3>
@@ -393,6 +426,10 @@
 <p>Kỳ họp bế mạc sau khi kiện toàn bộ máy lãnh đạo và quyết định các vấn đề nền tảng. Việc thống nhất về mặt Nhà nước được hoàn thành; công cuộc xây dựng đất nước trong hòa bình tiếp tục đặt ra những nhiệm vụ mới. <a class="ref" href="#s5">[5]</a>
 </p>
 </article>
+</div>
+<button class="copy-more" data-copy="session" hidden>ĐỌC TIẾP ↓</button>
+<nav class="session-rail" aria-label="Chọn ngày trong kỳ họp"><button data-session="0">24.06</button><button data-session="1">29.06</button><button data-session="2">02.07</button><button data-session="3">03.07</button></nav>
+<div class="scene-signature" aria-hidden="true">04 / MƯỜI NGÀY LỊCH SỬ <span class="session-index">01 — 04</span></div>
 </div>
 </div>
 </section>
@@ -637,7 +674,7 @@
 <div>
 <p>
 <strong>Ảnh mở đầu:</strong> TTXVN, đăng trong bài [4]. <strong>Ảnh cổ động:</strong> media.quochoi.vn, qua [2]. <strong>Ảnh toàn cảnh và Phạm Văn Đồng bỏ phiếu:</strong> đăng trong [5]. Các nút xem ảnh mở tư liệu theo tỷ lệ gốc. Quyền ảnh thuộc chủ sở hữu tương ứng.</p>
-<p>Không tô màu, tạo ảnh AI hoặc thêm người, vật vào ảnh. Một số khung trình bày cắt theo tỷ lệ màn hình; ảnh mở lớn giữ nguyên tỷ lệ. Chú thích ảnh ở bài [2] và [5] có ngày “2/6/1976”, mâu thuẫn thời gian kỳ họp; trang chỉ dùng mốc năm cho ảnh này và đối chiếu ngày 2/7 qua [4].</p>
+<p>Ảnh tư liệu giữ nguyên nội dung gốc. Một số khung trình bày cắt theo tỷ lệ màn hình; ảnh mở lớn giữ nguyên tỷ lệ. Chú thích ảnh ở bài [2] và [5] có ngày “2/6/1976”, mâu thuẫn thời gian kỳ họp; trang chỉ dùng mốc năm cho ảnh này và đối chiếu ngày 2/7 qua [4].</p>
 <p>Các đoạn “góc nhìn”, “vì sao” là phân tích biên tập từ dữ kiện dẫn nguồn, không phải lời nói của nhân vật lịch sử. Ngoài trích dẫn ngắn có dấu ngoặc kép, nội dung được diễn giải, không trình bày như bản sao văn kiện.</p>
 </div>
 </div>
@@ -671,6 +708,6 @@
 </div>
 <script src="app.js">
 </script>
-<script src="motion.js"></script>
+<script src="cinema.js"></script>
 </body>
 </html>

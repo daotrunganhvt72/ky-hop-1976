@@ -14,14 +14,14 @@ Website tĩnh HTML/CSS/JavaScript, không cần cài thư viện hoặc build. M
 
 Mọi nguồn nằm ngay trong mục “Tủ tư liệu mở” trên trang. Số liệu có tệp `data.csv`; bảy nhóm thành phần cộng 492 đại biểu. Các chiều giới tính, dân tộc và tuổi được thể hiện độc lập, không cộng chung hoặc suy ra giao thoa. Chấm chỉ minh họa số lượng, không xác định cá nhân hay chỗ ngồi thực tế.
 
-Ảnh là ảnh tư liệu từ TTXVN/VietnamPlus, Bảo tàng Lịch sử Quốc gia và media.quochoi.vn; xuất xứ gắn với chú thích ảnh. Không dùng hình tạo bởi AI, không tô màu hay thêm chi tiết vào tư liệu. Quyền đối với ảnh thuộc chủ sở hữu tương ứng; kho mã không cấp phép lại ảnh báo chí.
+Ảnh là ảnh tư liệu từ TTXVN/VietnamPlus, Bảo tàng Lịch sử Quốc gia và media.quochoi.vn; xuất xứ gắn với chú thích ảnh. Giữ nguyên nội dung ảnh, không tô màu hay thêm chi tiết vào tư liệu. Quyền đối với ảnh thuộc chủ sở hữu tương ứng; kho mã không cấp phép lại ảnh báo chí.
 
 Tên chức danh năm 1976 được giữ theo nguồn: Trường Chinh là Chủ tịch Ủy ban Thường vụ Quốc hội. Hiến pháp 1980 được thông qua về sau, không phải ở kỳ họp tháng 6–7/1976.
 
 ## Thiết kế & khả năng tiếp cận
 
-Thiết kế nền xanh đêm, ánh sáng tím và vàng, tiêu đề sans-serif có bóng đổ. Cảnh mở đầu ghim ảnh tư liệu, mở rộng và đổi góc nhẹ theo vị trí cuộn; các mốc thời gian và cảnh nghị trường chuyển theo câu chuyện. `motion.css` và `motion.js` quản lý lớp thiết kế này, không làm thay đổi dữ kiện hoặc tỷ lệ biểu đồ. Chuyển động được nội suy theo thời gian và chỉ chạy khi cần, dùng cuộn tự nhiên của trình duyệt.
+Thiết kế triển lãm tương tác: nền than đen, điểm sáng xanh và tím, tiêu đề Barlow Condensed. `cinema.css` và `cinema.js` tạo ba cảnh có chiều sâu: poster mở đầu với hình hạt 3D biến đổi, các lớp hình của hành trình xoay qua bốn mốc, và khung nghị trường thay đổi theo bốn ngày. Hình học trang trí được vẽ bằng WebGL, ảnh tư liệu hiển thị bằng phối cảnh CSS 3D. Tiến độ được nội suy theo thời gian; không ép cuộn hoặc thay đổi tỷ lệ dữ liệu.
 
-Biểu đồ 492 chấm có bộ lọc, sáu hồ sơ nghị quyết dùng tab bàn phím, ảnh mở lớn và câu hỏi cuối bài. Tôn trọng `prefers-reduced-motion`, hỗ trợ điện thoại, không ép cuộn và không thu thập dữ liệu người đọc. Các vòng sáng và chữ năm lớn là trang trí, không phải tư liệu lịch sử.
+Biểu đồ 492 chấm có bộ lọc, sáu hồ sơ nghị quyết dùng tab bàn phím, ảnh mở lớn và câu hỏi cuối bài. Có nút bật/tắt chuyển động trong mục lục và tôn trọng `prefers-reduced-motion`. Khi tắt chuyển động, toàn bộ bài chuyển về thứ tự đọc thông thường. Hỗ trợ điện thoại, không thu thập dữ liệu người đọc. Các hạt và vòng sáng là trang trí; chúng tách biệt với biểu đồ dữ liệu 492 đại biểu.
 
 Fonts được tải từ Google Fonts; trình duyệt có font dự phòng nếu offline. Nội dung chính vẫn đọc được khi JavaScript bị tắt; các tương tác cần JavaScript.

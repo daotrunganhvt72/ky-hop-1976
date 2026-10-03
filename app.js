@@ -51,7 +51,9 @@ function updateReading() {
   });
   $('#chapter-name').textContent = current.dataset.chapter;
   let activeStep = journeySteps[0];
-  journeySteps.forEach((step) => {
+  if (document.body.classList.contains('cinema-ready') && $('.journey').dataset.active !== undefined) {
+    activeStep = journeySteps[Number($('.journey').dataset.active)] || activeStep;
+  } else journeySteps.forEach((step) => {
     if (step.getBoundingClientRect().top <= window.innerHeight * 0.45) activeStep = step;
   });
   $('#journey-month').textContent = activeStep.dataset.month;
@@ -62,7 +64,9 @@ function updateReading() {
     if (active) link.setAttribute('aria-current', 'step'); else link.removeAttribute('aria-current');
   });
   let activeSession = sessionSteps[0];
-  sessionSteps.forEach((step) => {
+  if (document.body.classList.contains('cinema-ready') && $('.session-scene').dataset.active !== undefined) {
+    activeSession = sessionSteps[Number($('.session-scene').dataset.active)] || activeSession;
+  } else sessionSteps.forEach((step) => {
     if (step.getBoundingClientRect().top <= window.innerHeight * 0.52) activeSession = step;
   });
   $('#session-day').textContent = activeSession.dataset.day;
@@ -74,6 +78,7 @@ window.addEventListener('scroll', () => {
   if (!queuedScroll) {queuedScroll = true; requestAnimationFrame(updateReading);}
 }, {passive: true});
 window.addEventListener('resize', updateReading);
+window.addEventListener('cinema:scene', updateReading);
 updateReading();
 
 // Counts transcribed from the TTXVN table [3]. Dots represent amounts,

@@ -55,6 +55,7 @@
     });
     galleryWidth = cards[0]?.offsetWidth || 440;
     world?.resize();
+    if (!enabled) world?.draw(0, 0, 0, 'still', [0, 0]);
     refreshCues();
     updateTargets();
   }

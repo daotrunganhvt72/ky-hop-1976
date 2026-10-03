@@ -98,6 +98,21 @@ const dimensions = {
   ethnic: {label: 'Đại biểu dân tộc thiểu số', count: 67, color: '#edc786'},
   young: {label: 'Đại biểu tuổi 20–30', count: 58, color: '#74bea9'}
 };
+// Light and shade change the appearance of each bead, never its count or area.
+const svgNS = 'http://www.w3.org/2000/svg';
+function materialId(color) {return `seat-material-${color.slice(1)}`;}
+function tint(color, amount) {
+  const channels = [1, 3, 5].map(start => parseInt(color.slice(start, start + 2), 16));
+  return `rgb(${channels.map(value => Math.round(amount > 0 ? value + (255 - value) * amount : value * (1 + amount))).join(',')})`;
+}
+[...new Set([...groups, ...Object.values(dimensions), {color: '#c9cec7'}].map(group => group.color))].forEach(color => {
+  const gradient = document.createElementNS(svgNS, 'radialGradient');
+  gradient.id = materialId(color); gradient.setAttribute('cx', '32%'); gradient.setAttribute('cy', '23%'); gradient.setAttribute('r', '78%');
+  [[0, tint(color, .7)], [.25, tint(color, .3)], [.6, color], [1, tint(color, -.52)]].forEach(([offset, shade]) => {
+    const stop = document.createElementNS(svgNS, 'stop'); stop.setAttribute('offset', String(offset)); stop.setAttribute('stop-color', shade); gradient.append(stop);
+  });
+  $('#seat-materials').append(gradient);
+});
 const dots = [];
 for (let row = 0; row < 12; row++) {
   const count = 30 + 2 * row;
@@ -107,10 +122,10 @@ for (let row = 0; row < 12; row++) {
     const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     dot.setAttribute('cx', String(360 + Math.cos(angle) * radius));
     dot.setAttribute('cy', String(350 - Math.sin(angle) * radius));
-    dot.setAttribute('r', '4.3');
+    dot.setAttribute('r', '5.1');
     dot.classList.add('seat');
     dot.setAttribute('aria-hidden', 'true');
-    $('#parliament').append(dot);
+    $('#seat-dots').append(dot);
     dots.push(dot);
   }
 }
@@ -129,17 +144,28 @@ function paintChart() {
     while (index >= rangeEnd && groupIndex < displayGroups.length - 1) {
       groupIndex++; rangeEnd += displayGroups[groupIndex].count;
     }
-    dot.setAttribute('fill', displayGroups[groupIndex].color);
-    dot.setAttribute('opacity', selectedGroup < 0 || groupIndex === selectedGroup ? '1' : '0.16');
+    const lit = selectedGroup < 0 || groupIndex === selectedGroup;
+    dot.setAttribute('fill', `url(#${materialId(displayGroups[groupIndex].color)})`);
+    dot.setAttribute('opacity', lit ? '1' : '0.24');
+    dot.classList.toggle('lit', lit);
   });
   const selection = selectedGroup < 0 ? null : displayGroups[selectedGroup];
   $('#highlight-count').textContent = format(selection ? selection.count : total);
-  $('#highlight-label').textContent = selection ? (chartMode === 'occupation' ? 'TRONG NHÓM ĐÃ CHỌN' : 'ĐẠI BIỂU ĐÃ CHỌN') : 'ĐẠI BIỂU';
+  $('#highlight-label').textContent = selection ? selection.label : 'TỔNG SỐ ĐẠI BIỂU';
+  const focus = selection || (chartMode === 'occupation' ? groups.reduce((a, b) => a.count > b.count ? a : b) : displayGroups[0]);
+  $('#chart-focus').style.setProperty('--focus-color', focus.color);
+  $('#chart-focus-eyebrow').textContent = selection ? 'NHÓM ĐANG CHỌN' : chartMode === 'occupation' ? 'NHÓM ĐÔNG NHẤT' : 'NHÓM ĐƯỢC THỐNG KÊ';
+  $('#chart-focus-name').textContent = focus.label;
+  $('#chart-focus-count').textContent = format(focus.count);
+  $('#chart-focus-percent').replaceChildren(document.createTextNode(format(focus.count / total * 100)), Object.assign(document.createElement('small'), {textContent: '%'}));
+  $('#chart-focus-bar').style.width = `${focus.count / total * 100}%`;
+  $('#chart-focus-context').textContent = selection ? 'Các hạt sáng biểu thị nhóm đang chọn; các hạt mờ là những đại biểu còn lại.' : 'Chọn tên nhóm bên dưới để làm nổi bật các hạt tương ứng.';
   $('#chart-status').textContent = selection
     ? `${selection.label}: ${format(selection.count)} đại biểu, ${format(selection.count / total * 100)}% tổng số. Nguồn TTXVN [3].`
     : `${displayGroups.length} nhóm hiển thị, tổng cộng 492 đại biểu. Nguồn TTXVN [3].`;
   $('#chart-desc').textContent = displayGroups.map((group) => `${group.label}: ${group.count}`).join('; ') + '. Mỗi chấm minh họa một đơn vị số lượng, không xác định người hay chỗ ngồi thực tế.';
-  $$('#chart-legend button').forEach((button, index) => {
+  $$('#chart-legend button').forEach(button => {
+    const index = Number(button.dataset.group);
     button.setAttribute('aria-pressed', String(index === selectedGroup));
     button.classList.toggle('selected', index === selectedGroup);
   });
@@ -150,10 +176,13 @@ function setChartMode(mode) {
   $$('.chart-tabs button').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
   $('#legend-heading').textContent = mode === 'occupation' ? 'CHỌN NHÓM ĐỂ KHÁM PHÁ' : 'MỘT CHIỀU PHÂN LOẠI RIÊNG';
   $('#chart-legend').replaceChildren();
-  currentGroups().forEach((group, index) => {
+  currentGroups().map((group, index) => ({group, index})).sort((a, b) => chartMode === 'occupation' ? b.group.count - a.group.count : a.index - b.index).forEach(({group, index}) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'legend-item';
+    button.dataset.group = String(index);
+    button.style.setProperty('--group-color', group.color);
+    button.setAttribute('aria-label', `${group.label}: ${format(group.count)} đại biểu, ${format(group.count / total * 100)}%`);
     const swatch = document.createElement('i'); swatch.style.background = group.color;
     const label = document.createElement('span'); label.textContent = group.label;
     const count = document.createElement('b'); count.textContent = format(group.count);

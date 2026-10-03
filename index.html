@@ -15,7 +15,7 @@
 <link rel="icon" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="cinema.css">
 </head>
 <body>
@@ -246,9 +246,9 @@
 </div>
 <button class="copy-more" data-copy="journey" hidden>ĐỌC TIẾP ↓</button>
 <div class="gallery-deck">
-<figure class="gallery-card gallery-poster poster-union" data-card="0">
-<div class="poster-eyebrow">15 — 21.11.1975 / SÀI GÒN</div><div class="poster-rings" aria-hidden="true"><i></i><i></i><i></i></div>
-<strong>HIỆP<br>THƯƠNG.</strong><figcaption>Hai miền cùng bàn việc thống nhất Nhà nước. <a href="#s10">[10]</a></figcaption>
+<figure class="gallery-card gallery-photo consultation-card" data-card="0">
+<button class="zoom-photo" data-image="assets/consultation.jpg" data-caption="Trường Chinh và Phạm Hùng ký văn kiện sau Hội nghị Hiệp thương, ngày 21/11/1975. Ảnh: TTXVN / VietnamPlus [7]." aria-label="Xem ảnh ký văn kiện hiệp thương"><img src="assets/consultation.jpg" alt="Trường Chinh và Phạm Hùng tại lễ ký văn kiện hiệp thương năm 1975" loading="lazy"><span>XEM ẢNH ＋</span></button>
+<div class="gallery-photo-title">HIỆP<br>THƯƠNG.</div><figcaption>Ký văn kiện hiệp thương · 21.11.1975.<br>Ảnh: TTXVN / VietnamPlus. <a href="#s7">[7]</a></figcaption>
 </figure>
 <figure class="gallery-card gallery-poster poster-council" data-card="1">
 <div class="poster-eyebrow">HỘI ĐỒNG BẦU CỬ TOÀN QUỐC</div><strong>22</strong><div class="council-dot-grid" aria-hidden="true"></div>
@@ -326,7 +326,8 @@
 <div class="parliament-top">
 <div>
 <span class="eyebrow">CHÂN DUNG QUỐC HỘI KHÓA VI</span>
-<h3>492 chấm. 492 đại biểu.</h3>
+<h3>492 đại biểu.<br>Một Quốc hội.</h3>
+<p class="chart-intro">Mỗi hạt là một đại biểu. Chọn một nhóm để xem số lượng và tỷ lệ.</p>
 </div>
 <div class="chart-tabs" role="group" aria-label="Chọn cách phân loại đại biểu">
 <button data-mode="occupation" aria-pressed="true">Thành phần</button>
@@ -341,16 +342,31 @@
 <svg id="parliament" viewBox="0 0 720 420" role="img" aria-labelledby="chart-title chart-desc">
 <title id="chart-title">Cơ cấu 492 đại biểu Quốc hội khóa VI</title>
 <desc id="chart-desc">Mỗi chấm là một đại biểu, bố trí hình cung để minh họa số lượng. Không mô phỏng chỗ ngồi thực tế.</desc>
+<defs id="seat-materials">
+<filter id="seat-shadow" x="-60%" y="-50%" width="220%" height="240%"><feDropShadow dx="0" dy="2.8" stdDeviation="1" flood-color="#000" flood-opacity=".75"/></filter>
+<radialGradient id="stage-light"><stop stop-color="#e2ac4b" stop-opacity=".16"/><stop offset="1" stop-color="#e2ac4b" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse class="chart-plinth" cx="360" cy="354" rx="340" ry="32" fill="url(#stage-light)" aria-hidden="true"/>
+<path class="chart-baseline" d="M30 355 H690" fill="none" stroke="#ffdf7830" aria-hidden="true"/>
+<g id="seat-dots" filter="url(#seat-shadow)"></g>
 </svg>
 <div class="chart-center">
 <strong id="highlight-count">492</strong>
-<span id="highlight-label">ĐẠI BIỂU</span>
+<span id="highlight-label">TỔNG SỐ ĐẠI BIỂU</span>
 </div>
 </div>
 <p class="chart-note">Cách xếp chấm chỉ là minh họa dữ liệu, không phải sơ đồ chỗ ngồi tại kỳ họp.</p>
 </div>
 <div class="legend-panel">
+<div class="chart-focus" id="chart-focus">
+<span class="eyebrow" id="chart-focus-eyebrow">NHÓM ĐÔNG NHẤT</span>
+<h4 id="chart-focus-name">Cán bộ chính trị</h4>
+<div class="focus-values"><div><strong id="chart-focus-count">141</strong><span> / 492 đại biểu</span></div><b id="chart-focus-percent">28,66<small>%</small></b></div>
+<div class="focus-track" aria-hidden="true"><i id="chart-focus-bar" style="width:28.66%"></i></div>
+<p id="chart-focus-context">Chọn tên nhóm bên dưới để làm nổi bật các hạt tương ứng.</p>
+</div>
 <p class="eyebrow" id="legend-heading">CHỌN NHÓM ĐỂ KHÁM PHÁ</p>
+<div class="legend-columns" aria-hidden="true"><span>NHÓM ĐẠI BIỂU</span><span>SỐ NGƯỜI</span><span>TỶ LỆ</span></div>
 <div id="chart-legend">
 </div>
 <p class="chart-status" id="chart-status" aria-live="polite">7 nhóm thành phần, tổng cộng 492 đại biểu.</p>
@@ -365,6 +381,19 @@
 <a class="text-link" href="data.csv" download>Tải bảng số liệu và nguồn (CSV)</a>
 </div>
 </details>
+</div>
+<div class="ballot-photos">
+<div class="photo-story-heading"><span class="eyebrow">TỪ SỐ LIỆU ĐẾN NHỮNG CON NGƯỜI</span><h3>Lá phiếu ở công trường.<br>Trong giảng đường.</h3><p>Hai khung hình trong phóng sự ảnh về tổng tuyển cử năm 1976. <a class="ref" href="#s7">[7]</a></p></div>
+<div class="archive-pair">
+<figure class="depth-photo reveal">
+<button class="zoom-photo" data-image="assets/workers-voting.jpg" data-caption="Công nhân xây dựng cầu Yên Xuân, Nghệ Tĩnh, tham gia bầu cử Quốc hội khóa VI tại công trường. Ảnh: Lan Xuân / TTXVN, đăng trên VietnamPlus [7]." aria-label="Xem ảnh công nhân bỏ phiếu tại công trường"><img src="assets/workers-voting.jpg" alt="Công nhân bỏ phiếu tại công trường xây dựng cầu Yên Xuân" loading="lazy" width="850" height="548"><span>XEM ẢNH GỐC ＋</span></button>
+<figcaption><span class="photo-folio">01 / CÔNG TRƯỜNG CẦU YÊN XUÂN</span>Công nhân tham gia bầu cử ngay tại công trường, Nghệ Tĩnh.<br>Ảnh: Lan Xuân / TTXVN. <a href="#s7">[7]</a></figcaption>
+</figure>
+<figure class="depth-photo reveal">
+<button class="zoom-photo" data-image="assets/students-voting.jpg" data-caption="Sinh viên Đại học Nông nghiệp 3, Bắc Thái, bầu cử Quốc hội khóa VI ngày 25/4/1976. Ảnh: Vũ Hanh / TTXVN, đăng trên VietnamPlus [7]." aria-label="Xem ảnh sinh viên đi bầu"><img src="assets/students-voting.jpg" alt="Sinh viên Đại học Nông nghiệp 3 bỏ phiếu ngày 25 tháng 4 năm 1976" loading="lazy" width="850" height="576"><span>XEM ẢNH GỐC ＋</span></button>
+<figcaption><span class="photo-folio">02 / ĐẠI HỌC NÔNG NGHIỆP 3</span>Sinh viên đi bầu ở Bắc Thái, ngày 25.04.1976.<br>Ảnh: Vũ Hanh / TTXVN. <a href="#s7">[7]</a></figcaption>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -673,7 +702,7 @@
 <h3>Ảnh tư liệu & nguyên tắc biên tập</h3>
 <div>
 <p>
-<strong>Ảnh mở đầu:</strong> TTXVN, đăng trong bài [4]. <strong>Ảnh cổ động:</strong> media.quochoi.vn, qua [2]. <strong>Ảnh toàn cảnh và Phạm Văn Đồng bỏ phiếu:</strong> đăng trong [5]. Các nút xem ảnh mở tư liệu theo tỷ lệ gốc. Quyền ảnh thuộc chủ sở hữu tương ứng.</p>
+<strong>Ảnh mở đầu:</strong> TTXVN, đăng trong bài [4]. <strong>Ảnh cổ động:</strong> media.quochoi.vn, qua [2]. <strong>Ảnh toàn cảnh và Phạm Văn Đồng bỏ phiếu:</strong> đăng trong [5]. <strong>Ảnh ký văn kiện hiệp thương, công nhân và sinh viên bỏ phiếu:</strong> TTXVN, đăng trong phóng sự VietnamPlus [7]; ảnh công nhân của Lan Xuân, ảnh sinh viên của Vũ Hanh. Các nút xem ảnh mở tư liệu theo tỷ lệ gốc. Quyền ảnh thuộc chủ sở hữu tương ứng.</p>
 <p>Ảnh tư liệu giữ nguyên nội dung gốc. Một số khung trình bày cắt theo tỷ lệ màn hình; ảnh mở lớn giữ nguyên tỷ lệ. Chú thích ảnh ở bài [2] và [5] có ngày “2/6/1976”, mâu thuẫn thời gian kỳ họp; trang chỉ dùng mốc năm cho ảnh này và đối chiếu ngày 2/7 qua [4].</p>
 <p>Các đoạn “góc nhìn”, “vì sao” là phân tích biên tập từ dữ kiện dẫn nguồn, không phải lời nói của nhân vật lịch sử. Ngoài trích dẫn ngắn có dấu ngoặc kép, nội dung được diễn giải, không trình bày như bản sao văn kiện.</p>
 </div>

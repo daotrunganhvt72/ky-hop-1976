@@ -28,6 +28,11 @@ Không suy ra danh tính của từng chấm từ số liệu tổng hợp. Khô
 | `assets/campaign.jpg` | Cổ động bầu cử ở Hoàng Liên Sơn, tháng 4/1976; media.quochoi.vn qua BTLSQG [2]. |
 | `assets/assembly.jpg` | Toàn cảnh kỳ họp thứ nhất Quốc hội khóa VI, đăng trên BTLSQG [5]. Bản nguồn có độ phân giải thấp, không tạo thêm chi tiết. |
 | `assets/vote.jpg` | Phạm Văn Đồng bỏ phiếu bầu cơ quan lãnh đạo, tháng 6/1976; BTLSQG [5]. |
+| `assets/consultation.jpg` | Trường Chinh và Phạm Hùng ký văn kiện sau Hội nghị Hiệp thương, 21/11/1975. TTXVN / VietnamPlus [7], ảnh `2204tongtuyencu11.jpg.avif`. |
+| `assets/workers-voting.jpg` | Công nhân xây dựng cầu Yên Xuân (Nghệ Tĩnh) bỏ phiếu tại công trường. Lan Xuân / TTXVN, VietnamPlus [7], ảnh `2204tongtuyencu6.jpg.avif`. |
+| `assets/students-voting.jpg` | Sinh viên Đại học Nông nghiệp 3 (Bắc Thái) bỏ phiếu ngày 25/4/1976. Vũ Hanh / TTXVN, VietnamPlus [7], ảnh `2204tongtuyencu14.jpg.avif`. |
+
+Ba ảnh bổ sung tải từ các liên kết ảnh trong phóng sự [7], chuyển định dạng AVIF sang JPEG để tương thích trình duyệt. Giữ nguyên kích thước và nội dung; không tạo thêm chi tiết. Các khung 3D chỉ áp dụng phối cảnh khi hiển thị, nút xem ảnh gốc phục hồi tỷ lệ đầy đủ.
 
 Ảnh không dùng giấy phép của mã nguồn. Quyền ảnh thuộc chủ sở hữu tương ứng. Website ghi xuất xứ, không tuyên bố ảnh là tác phẩm của người thiết kế trang.
 

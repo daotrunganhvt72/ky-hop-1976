@@ -25,3 +25,7 @@ Thiết kế triển lãm tương tác: nền đỏ trầm, ngôi sao vàng năm
 Biểu đồ 492 chấm có bộ lọc, sáu hồ sơ nghị quyết dùng tab bàn phím, ảnh mở lớn và câu hỏi cuối bài. Có nút bật/tắt chuyển động trong mục lục và tôn trọng `prefers-reduced-motion`. Khi tắt chuyển động, toàn bộ bài chuyển về thứ tự đọc thông thường. Hỗ trợ điện thoại, không thu thập dữ liệu người đọc. Ngôi sao, ánh sáng và các hạt nền là trang trí; chúng tách biệt với biểu đồ dữ liệu 492 đại biểu.
 
 Fonts được tải từ Google Fonts; trình duyệt có font dự phòng nếu offline. Nội dung chính vẫn đọc được khi JavaScript bị tắt; các tương tác cần JavaScript.
+
+Tiêu đề dùng Barlow Condensed; đoạn đọc dùng Source Serif 4 với cỡ chữ lớn hơn; điều khiển dùng Be Vietnam Pro. Biểu đồ có hạt được tạo sáng–tối, nền đỡ và một ô số liệu: mặc định giới thiệu nhóm đông nhất; khi chọn nhóm, hiển thị số đại biểu và phần trăm trên tổng 492. Danh sách thành phần xếp theo số lượng giảm dần. Hiệu ứng chiều sâu không thay đổi số lượng hạt hoặc tỷ lệ thanh.
+
+Ba ảnh TTXVN từ phóng sự VietnamPlus [7] bổ sung cho cảnh hiệp thương và hai khung bỏ phiếu tại công trường, trường đại học. Mỗi ảnh có chú thích, nguồn và nút mở toàn ảnh.

@@ -61,3 +61,97 @@ body:not(.cinema-ready) .cover-stage{height:auto;min-height:1150px;background:ra
 .cover-top .eyebrow,.issue,.cover-description>p,.scene-cue{color:#f1d9d4}
 .light-orbit{inset:10% 20%;opacity:.35;transform:none;background:linear-gradient(#fff1a4,#ffd54b);clip-path:polygon(50% 0%,61.8% 36.4%,100% 36.4%,69.1% 58.8%,80.9% 95.1%,50% 72.7%,19.1% 95.1%,30.9% 58.8%,0% 36.4%,38.2% 36.4%)}
 .light-orbit i{display:none}
+
+/* Display type, editorial reading type, and compact interface type. */
+:root{--reading:'Source Serif 4',Georgia,'Times New Roman',serif}
+body{font-size:16px}
+.reading,.journey-step>p,.session-step>p,.insight p,#decree-body,.city-story,.constitutional-bridge>p,.legacy-grid p,.legacy-note p,.quiz-feedback,.photo-story-heading>p{font-family:var(--reading);font-size:1.17rem;line-height:1.85;font-weight:400;letter-spacing:.005em}
+.reading{font-size:1.24rem;line-height:1.9}
+.section-heading>p,.hero-story p{font-family:var(--reading);font-size:1.13rem;line-height:1.8}
+.cinema-ready .journey-step>p,.cinema-ready .session-step>p{font-family:var(--reading);font-size:1.1rem;line-height:1.8}
+.cinema-ready .journey-step .insight p{font-size:1rem;line-height:1.8}
+.margin-note p,.method p{font-family:var(--reading);font-size:1.04rem;line-height:1.85}
+.session-step blockquote{font-family:var(--reading);font-size:1.7rem;line-height:1.45;font-style:italic;text-transform:none}
+.document-insight p{font-size:1.08rem}
+.source-list li>a{font-size:1rem;line-height:1.6}
+.editor-note,figcaption,.chart-note{font-size:.85rem;line-height:1.8}
+.cover-description>p{font-size:.88rem}
+.ref{font-size:.78rem}
+.step-date,.insight>span,.eyebrow{font-size:.7rem}
+
+/* The bead chart has a lit surface, a floor and a clear numerical focus. */
+.parliament-panel{padding:44px;border-radius:20px;border-color:#e4bc6952;background:radial-gradient(ellipse at 15% 20%,#e4b55912,transparent 65%),linear-gradient(145deg,#24151b,#11090e);box-shadow:0 24px 0 -16px #4e2728,0 30px 0 -20px #8e614037,0 50px 100px #0007;overflow:hidden}
+.parliament-top{align-items:center;gap:35px}
+.parliament-top h3{font-size:3.4rem;line-height:1.02;margin-top:12px}
+.chart-intro{font:.87rem/1.8 var(--sans);color:#c2b6b8;margin-top:18px;max-width:450px}
+.chart-tabs{gap:8px;max-width:390px}
+.chart-tabs button{font:.8rem/1.4 var(--sans);padding:11px 15px;min-height:44px}
+.parliament-content{grid-template-columns:minmax(0,1.25fr) minmax(340px,1fr);gap:38px;align-items:start;padding-top:36px}
+.seat-visual{align-self:center;min-width:0}
+.chart-graphic{padding:24px 8px 0;border:1px solid #ffdc7822;border-radius:50% 50% 20px 20px;background:radial-gradient(ellipse at 50% 90%,#d5a65515,transparent 60%);perspective:1100px}
+.chart-graphic svg{transform:rotateX(12deg);transform-origin:50% 88%;filter:drop-shadow(0 14px 18px #0008)}
+.seat{stroke:#fff5;stroke-width:.55;transition:opacity .35s;}
+.chart-center{top:66%;padding:0 8px;z-index:2}
+.chart-center strong{font-size:5rem;line-height:1;color:#ffe07a;text-shadow:0 4px 16px #000}
+.chart-center span{font:.7rem/1.5 var(--sans);max-width:200px;margin:8px auto 0;text-transform:none;color:#e9dcd3}
+.seat-visual>.chart-note{margin-top:23px;font-size:.8rem}
+.chart-focus{--focus-color:#859fed;border:1px solid color-mix(in srgb,var(--focus-color) 45%,transparent);border-radius:15px;padding:24px;background:linear-gradient(135deg,color-mix(in srgb,var(--focus-color) 16%,#171017),#171017);box-shadow:0 16px 35px #0003;margin-bottom:28px;position:relative;overflow:hidden}
+.chart-focus:before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--focus-color)}
+.chart-focus>.eyebrow{font-size:.63rem;color:#d9cfd5}
+.chart-focus h4{font:500 1.3rem/1.45 var(--sans);color:#faf3ee;margin:9px 0 12px}
+.focus-values{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.focus-values strong{font:600 3.5rem/1 var(--display);color:white}
+.focus-values span{font:.72rem/1.7 var(--sans);color:#bfb5bd}
+.focus-values b{font:500 2.5rem/1 var(--display);color:var(--focus-color);white-space:nowrap}
+.focus-values b small{font-size:1.1rem;margin-left:3px}
+.focus-track{height:7px;background:#ffffff12;border-radius:8px;overflow:hidden;margin:19px 0 14px}
+.focus-track i{height:100%;display:block;background:var(--focus-color);border-radius:8px;transition:width .35s}
+.chart-focus>p{font:.8rem/1.75 var(--sans);color:#c5bcc5;margin:0}
+.legend-panel>.eyebrow{font-size:.66rem;margin-bottom:17px}
+.legend-columns{display:grid;grid-template-columns:1fr 65px 66px;gap:10px;padding:0 10px 12px 28px;border-bottom:1px solid #ffffff30;font:.52rem/1.6 var(--mono);color:#9f959f}
+.legend-columns span:not(:first-child){text-align:right}
+.legend-item{grid-template-columns:10px minmax(0,1fr) 65px 66px;gap:10px;min-height:52px;padding:13px 10px;font-size:.88rem;border-bottom-color:#ffffff1d;border-radius:5px;transition:background .25s}
+.legend-item i{width:10px;height:10px;background:radial-gradient(circle at 30% 25%,#fff8,var(--group-color) 50%,#0008);box-shadow:0 3px 5px #0008}
+.legend-item b{font:500 .86rem var(--sans);color:#f3e8e4}
+.legend-item small{font:.78rem var(--mono);color:#b3a8b6}
+.legend-item[aria-pressed=true]{background:color-mix(in srgb,var(--group-color) 14%,transparent);box-shadow:inset 3px 0 var(--group-color)}
+.legend-item[aria-pressed=true] small{color:var(--group-color)}
+.chart-status{font:.81rem/1.85 var(--sans);color:#bdb2bc;margin-top:20px;min-height:0}
+.reset{font-size:.74rem;margin-top:14px;min-height:40px}
+.method summary{font-size:.91rem}
+.bar-row{grid-template-columns:100px 1fr 78px;font-size:.9rem;gap:16px;margin:27px 0}
+.bar-row b{font:500 .86rem var(--sans);color:#eaded5}
+.bar-track{height:15px;overflow:visible;border:1px solid #ffffff18;background:#14090d;border-radius:5px;box-shadow:inset 0 3px 7px #0009,0 5px 0 #0003}
+.bar-track i{height:100%;border-radius:4px;background:linear-gradient(180deg,#f3b2a0 0%,#df8d78 35%,#985949 100%);box-shadow:0 5px 0 #51262d,0 8px 13px #0004;border-top:1px solid #ffd4bd99}
+.national .bar-track i{background:linear-gradient(180deg,#fff2a9,#ffe07a 35%,#b98632);box-shadow:0 5px 0 #61401d,0 8px 13px #0004;border-top-color:#fff5c6}
+.axis{margin-left:116px;margin-right:94px;font-size:.65rem}
+.turnout-chart>.chart-note{margin-top:32px;font-size:.87rem}
+
+/* New archival photographs sit in raised, gently angled frames. */
+.ballot-photos{padding-top:100px;margin-top:75px;border-top:1px solid var(--line)}
+.photo-story-heading{max-width:800px;margin-bottom:45px}
+.photo-story-heading>.eyebrow{color:var(--mint)}
+.photo-story-heading h3{font-size:4rem;line-height:1.05;margin:20px 0}
+.photo-story-heading>p{color:#c8b7bb;max-width:540px}
+.archive-pair{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:start;padding:25px 10px 10px;perspective:1200px}
+.depth-photo:nth-child(2){padding-top:80px}
+.depth-photo .zoom-photo{background:#111;border:1px solid #dfc5a776;border-radius:8px;box-shadow:8px 10px 0 #552a2a,9px 11px 0 #b07e4a60,0 30px 70px #0007;transform:perspective(1200px) rotateY(7deg) rotateZ(-2deg);transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s}
+.depth-photo:nth-child(2) .zoom-photo{transform:perspective(1200px) rotateY(-7deg) rotateZ(2deg)}
+.depth-photo .zoom-photo img{aspect-ratio:1.5;object-fit:cover;filter:none}
+.depth-photo .zoom-photo:hover,.depth-photo .zoom-photo:focus-visible{transform:perspective(1200px) translateZ(24px) rotateY(0) rotateZ(0);box-shadow:5px 7px 0 #552a2a,0 35px 75px #0008}
+.depth-photo .zoom-photo:hover img{transform:none}
+.depth-photo figcaption{padding-top:28px;font-size:.87rem;line-height:1.9;color:#c0b1b7}
+.photo-folio{display:block;font:.61rem/1.8 var(--mono);color:var(--mint);letter-spacing:.06em;margin-bottom:12px}
+.consultation-card img{object-position:45% center}
+.gallery-card figcaption{font-size:.72rem;line-height:1.7}
+
+@media(max-width:1000px){.parliament-content{grid-template-columns:1fr 1fr;gap:24px}.parliament-panel{padding:30px}.legend-item{grid-template-columns:8px minmax(0,1fr) 45px 54px;gap:8px;font-size:.78rem}.legend-columns{grid-template-columns:1fr 45px 54px;font-size:.47rem}.focus-values strong{font-size:3rem}.focus-values b{font-size:2.1rem}.focus-values span{font-size:.63rem}.chart-focus{padding:20px}.chart-center strong{font-size:4.2rem}.chart-center span{font-size:.62rem}}
+@media(max-width:760px){
+ .reading{font-size:1.1rem;line-height:1.9}.section-heading>p{font-size:1.06rem}.hero-story p{font-size:.9rem}.cover-description>p{font-size:.79rem}.journey-step>p,.session-step>p,.cinema-ready .journey-step>p,.cinema-ready .session-step>p{font-size:1.02rem;line-height:1.78}.cinema-ready .journey-step .insight p{font-size:.94rem}.margin-note p,.method p,#decree-body,.legacy-grid p,.city-story,.constitutional-bridge>p{font-size:1.05rem}.document-insight p{font-size:1rem}.cinema-ready .session-step blockquote{font:italic 1.3rem/1.45 var(--reading)}.source-list li>a{font-size:.95rem}.step-date{font-size:.65rem}.cinema-ready .timeline-nav a{font-size:.6rem;line-height:1.55}.copy-more{font-size:.6rem}.insight>span{font-size:.65rem}
+ .parliament-panel{padding:28px 20px;border-radius:15px}.parliament-top h3{font-size:3rem}.parliament-top{display:block}.chart-intro{font-size:.86rem;line-height:1.75;margin-top:15px}.chart-tabs{margin-top:22px;gap:8px}.chart-tabs button{font-size:.76rem;padding:10px 12px}.parliament-content{grid-template-columns:1fr;gap:30px}.chart-graphic{padding:15px 0 0}.chart-center{top:65%}.chart-center strong{font-size:clamp(2.6rem,10.5vw,4.5rem)}.chart-center span{font-size:.67rem;max-width:160px;line-height:1.5;margin-top:6px}.seat-visual>.chart-note{font-size:.78rem;margin-top:19px}.chart-focus{padding:22px}.chart-focus h4{font-size:1.23rem}.focus-values strong{font-size:3.4rem}.focus-values b{font-size:2.4rem}.focus-values span{font-size:.7rem}.chart-focus>p{font-size:.82rem}.legend-item{grid-template-columns:9px minmax(0,1fr) 44px 58px;gap:9px;font-size:.85rem;min-height:55px}.legend-item b{font-size:.82rem}.legend-item small{font-size:.72rem}.legend-columns{grid-template-columns:1fr 44px 58px;gap:9px;padding-left:28px;font-size:.49rem}.chart-status{font-size:.82rem}.bar-row{grid-template-columns:80px minmax(0,1fr) 65px;gap:10px;font-size:.78rem}.bar-row b{font-size:.78rem}.axis{margin-left:90px;margin-right:75px;font-size:.58rem}.turnout-chart>.chart-note{font-size:.82rem}
+ .ballot-photos{padding-top:60px;margin-top:55px}.photo-story-heading h3{font-size:3rem}.photo-story-heading>p{font-size:1.05rem}.archive-pair{grid-template-columns:1fr;gap:50px;padding:15px 6px}.depth-photo:nth-child(2){padding-top:0}.depth-photo .zoom-photo{transform:perspective(1000px) rotateY(3deg) rotateZ(-1deg)}.depth-photo:nth-child(2) .zoom-photo{transform:perspective(1000px) rotateY(-3deg) rotateZ(1deg)}.depth-photo figcaption{font-size:.83rem;padding-top:23px}.photo-folio{font-size:.58rem}.gallery-card figcaption{font-size:.56rem}
+}
+@media(max-width:360px){.parliament-panel{padding:23px 15px}.parliament-top h3{font-size:2.7rem}.chart-tabs button{font-size:.7rem;padding:10px}.chart-center strong{font-size:2.5rem}.chart-center span{font-size:.58rem;max-width:130px}.chart-focus{padding:19px}.focus-values{gap:10px}.focus-values strong{font-size:3rem}.focus-values b{font-size:2rem}.focus-values span{font-size:.61rem}.legend-item{font-size:.75rem;grid-template-columns:8px minmax(0,1fr) 34px 48px;gap:7px}.legend-item b{font-size:.76rem}.legend-item small{font-size:.63rem}.legend-columns{grid-template-columns:1fr 34px 48px;gap:7px;padding-left:25px;font-size:.43rem}.bar-row{grid-template-columns:67px minmax(0,1fr) 59px;gap:8px;font-size:.73rem}.axis{margin-left:75px;margin-right:67px}.photo-story-heading h3{font-size:2.6rem}}
+@media(prefers-reduced-motion:reduce){.chart-graphic svg,.depth-photo .zoom-photo,.depth-photo:nth-child(2) .zoom-photo{transform:none}.seat,.focus-track i,.depth-photo .zoom-photo{transition:none}}
+.motion-disabled .chart-graphic svg,.motion-disabled .depth-photo .zoom-photo{transform:none;transition:none}
+@media print{.chart-graphic svg,.depth-photo .zoom-photo{transform:none!important;filter:none;box-shadow:none}.chart-focus,.parliament-panel{background:white;color:black;box-shadow:none}.chart-focus h4,.focus-values strong,.focus-values b{color:black}.archive-pair{display:block}.depth-photo{margin-block:40px}.depth-photo .zoom-photo{border:1px solid #777}.chart-tabs,.reset,.zoom-photo>span{display:none}.ballot-photos{padding:40px}}

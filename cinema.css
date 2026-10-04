@@ -55,6 +55,8 @@ body:not(.cinema-ready) .cover-stage{height:auto;min-height:1150px;background:ra
 /* National colours: a yellow five-point star on a rich red field. */
 #universe{opacity:1}
 .star-ready .light-orbit{display:none}
+.flag-3d-ready .cover-stage:before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 40% 43% at 50% 43%,#18050970 0%,#18050925 65%,transparent 100%)}
+.flag-3d-ready .cover h1 em{text-shadow:0 3px 3px #180509c9,0 8px 24px #18050999}
 .cover h1{text-shadow:0 3px 8px #3a030c99,0 10px 45px #270207b3}
 .cover h1 em{color:#fff1bc;text-shadow:0 3px 8px #3a030c99,0 10px 45px #270207b3}
 .cover-pre{text-shadow:0 1px 5px #3a030c,0 1px 12px #3a030c}

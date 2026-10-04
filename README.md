@@ -20,7 +20,9 @@ Tên chức danh năm 1976 được giữ theo nguồn: Trường Chinh là Ch�
 
 ## Thiết kế & khả năng tiếp cận
 
-Thiết kế triển lãm tương tác: nền đỏ trầm, ngôi sao vàng năm cánh và điểm sáng vàng, tiêu đề Barlow Condensed. `cinema.css` và `cinema.js` tạo ba cảnh có chiều sâu: poster mở đầu với sao vàng chuyển động nhẹ trên nền đỏ, các lớp hình của hành trình xoay qua bốn mốc, và khung nghị trường thay đổi theo bốn ngày. Nền sao vàng được vẽ bằng Canvas 2D, ảnh tư liệu hiển thị bằng phối cảnh CSS 3D. Tiến độ được nội suy theo thời gian; không ép cuộn hoặc thay đổi tỷ lệ dữ liệu.
+Thiết kế triển lãm tương tác: nền đỏ trầm, ngôi sao vàng năm cánh và điểm sáng vàng, tiêu đề Barlow Condensed. `cinema.css` và `cinema.js` tạo ba cảnh có chiều sâu: poster mở đầu với sao vàng chuyển động nhẹ trên nền đỏ, các lớp hình của hành trình xoay qua bốn mốc, và khung nghị trường thay đổi theo bốn ngày. Nền cờ dùng WebGL với Canvas 2D dự phòng; ảnh tư liệu hiển thị bằng phối cảnh CSS 3D. Tiến độ được nội suy theo thời gian; không ép cuộn hoặc thay đổi tỷ lệ dữ liệu.
+
+Nền cờ được nâng cấp bằng `flag-world.js`: lưới vải WebGL 84×56 ô có sóng, pháp tuyến bề mặt và ánh sáng. Ngôi sao vàng năm cánh nằm trong cùng hệ tọa độ mặt vải, chuyển động theo các nếp gấp; góc nhìn thay đổi nhẹ theo cuộn và con trỏ. Tông đỏ–vàng được giữ, lớp tối phía sau tiêu đề bảo vệ độ tương phản, các phần đọc dài tiếp tục dùng nền đỏ trầm. Cờ là đồ họa trang trí, không phải tư liệu lịch sử. Canvas 2D được giữ làm phương án dự phòng nếu WebGL không khả dụng. Nút chuyển động và lựa chọn giảm chuyển động cũng điều khiển nền cờ; dừng animation khi trang bị ẩn hoặc ngoài cảnh nghệ thuật.
 
 Biểu đồ 492 chấm có bộ lọc, sáu hồ sơ nghị quyết dùng tab bàn phím, ảnh mở lớn và câu hỏi cuối bài. Có nút bật/tắt chuyển động trong mục lục và tôn trọng `prefers-reduced-motion`. Khi tắt chuyển động, toàn bộ bài chuyển về thứ tự đọc thông thường. Hỗ trợ điện thoại, không thu thập dữ liệu người đọc. Ngôi sao, ánh sáng và các hạt nền là trang trí; chúng tách biệt với biểu đồ dữ liệu 492 đại biểu.
 

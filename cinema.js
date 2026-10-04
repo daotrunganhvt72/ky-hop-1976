@@ -18,7 +18,7 @@
   const sessionArticles = [...document.querySelectorAll('.session-step')];
   const sessionPhoto = document.querySelector('.session-photo');
   const sessionButtons = [...document.querySelectorAll('.session-rail button')];
-  const canvas = document.querySelector('#universe');
+  let canvas = document.querySelector('#universe');
   const clamp = (n, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, n));
   const lerp = (a, b, p) => a + (b - a) * p;
   const ease = p => {p = clamp(p); return p * p * (3 - 2 * p);};
@@ -340,7 +340,14 @@
 
   configure();
   document.fonts.ready.then(() => {
-    try {world=createWorld();} catch {canvas.dataset.renderer='fallback';}
+    try {world=window.createVietnamFlagWorld?.(canvas) || createWorld();}
+    catch(error) {
+      // A fresh canvas permits the 2D renderer if WebGL initialization fails.
+      const fallback=canvas.cloneNode(false);
+      canvas.replaceWith(fallback);canvas=fallback;
+      world=createWorld();canvas.dataset.renderer='canvas2d-fallback';
+      canvas.dataset.rendererError=String(error.message).slice(0,180);
+    }
     measure();
     if (!enabled) world?.draw(0,0,0,'still',[0,0]);
     else requestFrame();
